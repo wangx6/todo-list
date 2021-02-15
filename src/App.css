@@ -13,6 +13,11 @@
   }
 }
 
+.td-form-list{
+  display: flex;
+  justify-content: between;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
