@@ -2,31 +2,28 @@ import React, {useContext} from 'react'
 import { ToDoContext } from '../../ContextApi';
 
 export default function ToDoControl() {
+    const {todos, completed, pending, toDoService} = useContext(ToDoContext);
 
-    const {active, toDoService} = useContext(ToDoContext);
-
+    // controller space
     const onClickAll = () => {
         toDoService.showAll();
     }
-    const onClickC = () => {
+    const onClickCompleted = () => {
         toDoService.showCompleted()
     }
-
-    // 1 - implement delete
-    // 2 - clear input when item is added
-    // 3 - store your previous list
-    const onClickD = () => {
-        console.log('asdfas');
+    const onClickPending = () => {
+        toDoService.showPending();
     }
     const onClickClear = () => {
         toDoService.clear();
     }
 
+    // view space
     return (
         <div>
-            <button onClick={onClickAll}>all</button>
-            <button onClick={onClickC}>completed</button>
-            <button onClick={onClickD}>deleted</button>
+            <button onClick={onClickAll}>all{todos.length}</button>
+            <button onClick={onClickCompleted}>completed({completed.length})</button>
+            <button onClick={onClickPending}>Pending({pending.length})</button>
             <button onClick={onClickClear}>clear</button>
         </div>
     )

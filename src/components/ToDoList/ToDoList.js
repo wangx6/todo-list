@@ -13,6 +13,7 @@ export default function ToDoList() {
         toDoService.remove(id);
     }
 
+    // view space
     return (
         <div>
             {active.map(l => <div key={l.id}>

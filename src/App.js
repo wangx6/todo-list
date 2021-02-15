@@ -12,14 +12,14 @@ import {ToDoContext} from './ContextApi';
 import ToDoModel from './models/ToDoModel';
 
 function App() {
-  const { active, ...toDoService } = ToDoModel();
+  const { active, todos, completed, pending, ...toDoService } = ToDoModel();
 
   return (
     <div className="App">
-      <ToDoContext.Provider value={{active, toDoService}}>
+      <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
+        <ToDoControl></ToDoControl>
         <ToDoForm></ToDoForm>
         <ToDoList></ToDoList>
-        <ToDoControl></ToDoControl>
       </ToDoContext.Provider>
     </div>
   );
