@@ -9,6 +9,8 @@
     align-items:center;
     justify-content: space-between;
 }
+
+
 .td-form-list__item__p.high{
     color: red;
 }
