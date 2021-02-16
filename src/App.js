@@ -17,7 +17,9 @@ function App() {
   return (
     <div className="App">
       <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
-        <ToDoControl></ToDoControl>
+        <div className="td-gap-b-20">
+          <ToDoControl></ToDoControl>
+        </div>
         <ToDoForm></ToDoForm>
         <ToDoList></ToDoList>
       </ToDoContext.Provider>
@@ -26,3 +28,6 @@ function App() {
 }
 
 export default App;
+
+
+

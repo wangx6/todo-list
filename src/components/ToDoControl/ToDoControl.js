@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { ToDoContext } from '../../ContextApi';
+import './ToDoControl.css';
 
 export default function ToDoControl() {
     const {todos, completed, pending, toDoService} = useContext(ToDoContext);
@@ -20,11 +21,11 @@ export default function ToDoControl() {
 
     // view space
     return (
-        <div>
-            <button onClick={onClickAll}>all{todos.length}</button>
-            <button onClick={onClickCompleted}>completed({completed.length})</button>
-            <button onClick={onClickPending}>Pending({pending.length})</button>
-            <button onClick={onClickClear}>clear</button>
+        <div className="td-todo-control">
+            <button className="td-btn" onClick={onClickAll}>all{todos.length}</button>
+            <button className="td-btn" onClick={onClickCompleted}>completed({completed.length})</button>
+            <button className="td-btn" onClick={onClickPending}>Pending({pending.length})</button>
+            <button className="td-btn" onClick={onClickClear}>clear</button>
         </div>
     )
 }

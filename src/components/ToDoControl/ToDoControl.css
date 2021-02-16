@@ -1,0 +1,4 @@
+.td-todo-control{
+    display: flex;
+    justify-content: space-between;
+}

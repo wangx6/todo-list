@@ -16,10 +16,14 @@ function setToLS(data){
  * return {Object} api
  */
 function ToDoModel() {
-    const [todos, setTodos] = useState(getFromLS() || []);
+    const [todos, setTodos] = useState([]);
     const [active, setActive] = useState(todos);
     const [completed, setCompleted] = useState([]);
     const [pending, setPending] = useState([]);
+
+    useEffect(() => {
+        setTodos(getFromLS() || []);
+    }, []);
 
     useEffect(() => {
         setActive(todos);
@@ -41,15 +45,29 @@ function ToDoModel() {
         }
     }
 
+    function validateTodo(data) {
+        return data.todo.trim();
+    }
+
     /**
      * 
      * param {  }
      * return {  }
      */
     function add(data) {
-        const r = __createRecord(data);
+        if(!validateTodo(data)) return;
+        const pdata = __processData(data);
+        const r = __createRecord(pdata);
         setTodos([...todos, r]);
     };
+
+    function __processData(data) {
+        const {todo} = data;
+        const [td, priority, dateTime] = todo.trim().split('::')
+        return {
+            todo:td, priority, dateTime
+        };
+    }
 
     /**
      * 
@@ -116,7 +134,7 @@ function ToDoModel() {
 
     // api
     return {
-        todos, active, completed, pending, 
+        todos, active, completed, pending, validateTodo,
         add, remove, clear, toggleItemCompleted, showAll, showCompleted, showPending,
     }
 }

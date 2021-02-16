@@ -7,7 +7,6 @@ export default function ToDoForm() {
 
     // controller space
     const onClickAddTodo = () => {
-        if(!state.trim()) return;
         toDoService.add({todo: state});
         setState('');
     }
@@ -25,8 +24,8 @@ export default function ToDoForm() {
 
     return (
         <div>
-            <input onChange={onChangeTodoInput} onKeyUp={onKeyUpInput} value={state}/>
-            <button onClick={onClickAddTodo}>Add</button>
+            <input className="td-text-input" onChange={onChangeTodoInput} onKeyUp={onKeyUpInput} value={state}/>
+            <button className="td-btn" onClick={onClickAddTodo}>Add</button>
         </div>
     )
 }
