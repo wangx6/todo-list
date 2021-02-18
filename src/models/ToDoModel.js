@@ -46,7 +46,7 @@ function ToDoModel() {
     }
 
     function validateTodo(data) {
-        return data.todo.trim();
+        return !!data.todo.trim();
     }
 
     /**
@@ -90,10 +90,9 @@ function ToDoModel() {
         for(let i = 0; i < temp.length; ++i) {
             if(temp[i].id === id) {
                 temp[i].status = temp[i].status === 1 ? 0 : 1;
-                break;
+                return setTodos(temp);
             }
-        }
-        setTodos(temp);
+        } 
     };
 
     /**
@@ -134,8 +133,15 @@ function ToDoModel() {
 
     // api
     return {
-        todos, active, completed, pending, validateTodo,
-        add, remove, clear, toggleItemCompleted, showAll, showCompleted, showPending,
+        todos, active, completed, pending, 
+        validateTodo,
+        add, 
+        remove, 
+        clear, 
+        toggleItemCompleted, 
+        showAll, 
+        showCompleted, 
+        showPending,
     }
 }
 

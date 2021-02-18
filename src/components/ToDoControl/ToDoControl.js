@@ -21,7 +21,7 @@ export default function ToDoControl() {
 
     // view space
     return (
-        <div className="td-todo-control">
+        <div className="td-todo-control" data-testid="td-todo-control">
             <button className="td-btn" onClick={onClickAll}>all{todos.length}</button>
             <button className="td-btn" onClick={onClickCompleted}>completed({completed.length})</button>
             <button className="td-btn" onClick={onClickPending}>Pending({pending.length})</button>
