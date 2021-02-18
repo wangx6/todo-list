@@ -26,10 +26,12 @@ function App() {
     <div className="App td-app" data-testid="to-do-app">
       <button className="td-btn" onClick={onClickShowMenu}>show side</button>
       <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
-        <div className="td-gap-b-20">
+        <div className="td-gap-b-30">
           <ToDoControl></ToDoControl>
         </div>
-        <ToDoForm></ToDoForm>
+        <div className="td-gap-b-20">
+          <ToDoForm></ToDoForm>
+        </div>
         <ToDoList></ToDoList>
         <SideMenu vvisible={showSideMenu}></SideMenu>
       </ToDoContext.Provider>

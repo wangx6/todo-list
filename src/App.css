@@ -16,11 +16,12 @@ body, html, div, input, button{
 }
 
 .td-btn{
-  background: purple;
+  background: #09c;
   padding: 7px 10px;
   color: #fff;
   border:0;
-  border-radius: 5px;
+  border-radius: 3px;
+  text-transform: capitalize;
 }
 
 .td-gat-r-10{

@@ -8,6 +8,11 @@
     display: flex;
     align-items:center;
     justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.td-form-list__item:nth-child(odd) {
+    background-color: #efefef;
 }
 .td-form-list__item__p.high{
     color: red;

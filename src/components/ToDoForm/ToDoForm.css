@@ -1,0 +1,8 @@
+.td-todo-form{
+    width :100%;
+    display: flex;
+}
+.td-todo-form__text-input{
+    flex-grow: 1;
+    margin-right: 20px;
+}

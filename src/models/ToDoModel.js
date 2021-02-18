@@ -45,6 +45,11 @@ function ToDoModel() {
         }
     }
 
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
     function validateTodo(data) {
         return !!data.todo.trim();
     }
@@ -58,9 +63,14 @@ function ToDoModel() {
         if(!validateTodo(data)) return;
         const pdata = __processData(data);
         const r = __createRecord(pdata);
-        setTodos([...todos, r]);
+        setTodos([r, ...todos]);
     };
 
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
     function __processData(data) {
         const {todo} = data;
         const [td, priority, dateTime] = todo.trim().split('::')

@@ -12,7 +12,21 @@
 .td-side-menu__menu{
     transition: transform 0.4s;
 }
-
+.td-side-menu__list__item{
+    padding: 5px 0;
+    font-weight:bold;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+.t-side-menu__logo{
+    height: 100px;
+    width: 100px;
+    border-radius:50%;
+    background-color: #eeeeee;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .td-side-menu__menu.hide{
     transform: translate(100%);
 }
