@@ -1,0 +1,28 @@
+body, html, div, input, button{
+  letter-spacing:1px;
+}
+
+.td-text-input{
+  border: 0;
+  border-bottom: 1px solid #09c;
+  padding: 10px 10px;
+}
+
+.td-btn{
+  background: purple;
+  padding: 7px 10px;
+  color: #fff;
+  border:0;
+  border-radius: 5px;
+}
+
+.td-gat-r-10{
+  margin-right: 10px;
+}
+.td-gap-b-30{
+  margin-bottom: 30px;
+}
+
+.td-gap-b-20{
+  margin-bottom: 20px;
+}

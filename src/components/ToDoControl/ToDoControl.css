@@ -1,0 +1,29 @@
+.td-todo-control{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width:100%;
+}
+.td-btn{
+    height: 50px;
+}
+.td-logo{
+float:right;
+}
+
+ .Overlay {
+    background-color: purple;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    margin: auto;
+	width: 320px;
+	height: 100%;
+    display: none;
+    transition: all 0.5s ease;
+  }
+  
+  .Overlay.Show {
+    display: block;
+  }

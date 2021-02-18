@@ -1,0 +1,20 @@
+.td-form-list-p{
+
+}
+.td-form-list-s{
+    margin-bottom: 10px;
+}
+.td-form-list__item{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.td-form-list__item__p.high{
+    color: red;
+}
+.td-form-list__item__p.med{
+    color: yellow;
+}
+.td-form-list__item__p.low{
+    color: green;
+}
