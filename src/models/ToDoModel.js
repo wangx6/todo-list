@@ -16,10 +16,12 @@ function setToLS(data){
  * return {Object} api
  */
 function ToDoModel() {
+
     const [todos, setTodos] = useState([]);
     const [active, setActive] = useState(todos);
     const [completed, setCompleted] = useState([]);
     const [pending, setPending] = useState([]);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         setTodos(getFromLS() || []);
@@ -132,10 +134,28 @@ function ToDoModel() {
         setActive(pending);
     }
 
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
+    function showModal() {
+        setModal(true)
+    };
+
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
+    function hideModal() {
+        setModal(false)
+    };
+
     // api
     return {
-        todos, active, completed, pending, validateTodo,
-        add, remove, clear, toggleItemCompleted, showAll, showCompleted, showPending,
+        todos, active, completed, pending, modal, validateTodo,
+        add, remove, clear, toggleItemCompleted, showAll, showCompleted, showPending, showModal, hideModal
     }
 }
 
