@@ -1,0 +1,8 @@
+.td-btn{
+    background:var(--main-color);
+    padding: 7px 10px;
+    color: #fff;
+    border:0;
+    border-radius: 3px;
+    text-transform: capitalize;
+}

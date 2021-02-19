@@ -1,27 +1,27 @@
 /* @import url("https://store.app.vhi.ie/logon/themes/Default/css/custom.css?v=4ecb5abf6e4b1655c07386a2c958597c"); */
+:root{
+  --main-color: #50E3A4;
+}
 
+@import url(//fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@300;800&display=swap);
 
-body, html, div, input, button{
-  letter-spacing:1px;
+*{
+  font-family: Montserrat;
+  font-weight: 400;
 }
 
 .td-app{
-  padding: 20px;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .td-text-input{
   border: 0;
   border-bottom: 1px solid #09c;
   padding: 10px 10px;
-}
-
-.td-btn{
-  background: #09c;
-  padding: 7px 10px;
-  color: #fff;
-  border:0;
-  border-radius: 3px;
-  text-transform: capitalize;
 }
 
 .td-gat-r-10{
@@ -46,3 +46,25 @@ body, html, div, input, button{
   background-color: rgba(0,0,0, .7);
   z-index: 1000;
 }
+
+
+/* for tablets */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* for desktop */
+@media only screen and (min-width:768px) {
+  body, html, div, input, button{
+    letter-spacing:1px;
+  }
+  
+  .td-app{
+    padding: 20px;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+}
+

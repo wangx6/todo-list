@@ -30,7 +30,7 @@ export default function ToDoForm() {
                 onChange={onChangeTodoInput} 
                 placeholder="What is your plan? :)"
                 onKeyUp={onKeyUpInput} value={state}/>
-            <button className="td-btn td-todo-form-add" onClick={onClickAddTodo}>Add</button>
+            <button className="td-btn td-todo-form-add" onClick={onClickAddTodo}>+</button>
         </div>
     )
 }

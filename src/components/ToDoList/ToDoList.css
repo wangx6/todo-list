@@ -1,6 +1,10 @@
 .td-form-list-p{
 
 }
+.td-form-list__item__description.done{
+    color: #ddd;
+    text-decoration: line-through;
+}
 .td-form-list-s{
     margin-bottom: 10px;
 }
@@ -11,9 +15,6 @@
     padding: 10px;
     margin-bottom: 10px;
 }
-.td-form-list__item:nth-child(odd) {
-    background-color: #efefef;
-}
 .td-form-list__item__p.high{
     color: red;
 }
@@ -22,4 +23,18 @@
 }
 .td-form-list__item__p.low{
     color: green;
+}
+.td-form-list__item__complete-btn{
+    background-color:var(--main-color);
+    border: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.to-form-list__item__del-btn{
+    background-color: red;
+    border: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }

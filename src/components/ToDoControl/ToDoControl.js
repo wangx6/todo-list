@@ -10,7 +10,6 @@ export default function ToDoControl() {
     // controller space
     const onClickAll = () => {
         toDoService.showAll();
-        
     }
     const onClickCompleted = () => {
         toDoService.showCompleted()
@@ -28,19 +27,19 @@ export default function ToDoControl() {
             <VhiButton 
                 clsName="td-todo-tid-all" 
                 handleClick={onClickAll} 
-                text={`All ${todos.length}`}>
+                text={`${todos.length}`}>
             </VhiButton>
 
             <VhiButton 
                 clsName="td-todo-tid-completed" 
                 handleClick={onClickCompleted} 
-                text={`completed(${completed.length})`}>
+                text={`C(${completed.length})`}>
             </VhiButton>
 
             <VhiButton 
                 clsName="td-todo-tid-pending" 
                 handleClick={onClickPending} 
-                text={`Pending(${pending.length})`}>
+                text={`P(${pending.length})`}>
             </VhiButton>
 
             <VhiButton 

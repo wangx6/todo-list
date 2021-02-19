@@ -8,7 +8,6 @@ Enzyme.configure({adapter: new Adapter17()});
 
 // mock the todoModel custom hook
 const tdm = {
-    active: [],
     todos: [],
     completed: [],
     pending: [],
@@ -19,13 +18,14 @@ const tdm = {
 };
 
 describe('render', () => {
-    it('shuld word when the "all" button is clicked', () => {
+    it('should word when the "all" button is clicked', () => {
         const {active, todos, completed, pending, ...toDoService} = tdm;
         const todoControl = mount(
-            <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
+            <ToDoContext.Provider value={{ todos, completed, pending, toDoService}}>
                 <ToDoControl></ToDoControl>
             </ToDoContext.Provider>
         );
+
         todoControl.find('.td-todo-tid-all').simulate('click');
         expect(tdm.showAll).toBeCalledTimes(1);
 

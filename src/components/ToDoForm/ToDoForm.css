@@ -6,3 +6,11 @@
     flex-grow: 1;
     margin-right: 20px;
 }
+.td-todo-form-add{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0;
+    background-color:var(--main-color);
+    color: #fff;
+}

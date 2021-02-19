@@ -1,13 +1,20 @@
 import React from 'react'
+import btnStyle from './VhiButton.module.css';
 
 export default function VhiButton({ text, handleClick, clsName }) {
 
+    // state space
+
+    // controller space
     const onClickBtn = () => {
-        if(handleClick) handleClick();
+        if(!handleClick || typeof handleClick !== 'function') return;
+        handleClick();
     };
+
+    // view space
     return (
-        <div>
-            <button className={`td-btn ${clsName}`} onClick={onClickBtn}>{text}</button>
-        </div>
+        <button 
+            className={`${btnStyle['td-btn']} ${clsName}`} 
+            onClick={onClickBtn}>{text}</button>
     )
 }
