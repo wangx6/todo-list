@@ -47,8 +47,13 @@ function ToDoModel() {
         }
     }
 
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
     function validateTodo(data) {
-        return data.todo.trim();
+        return !!data.todo.trim();
     }
 
     /**
@@ -60,9 +65,14 @@ function ToDoModel() {
         if(!validateTodo(data)) return;
         const pdata = __processData(data);
         const r = __createRecord(pdata);
-        setTodos([...todos, r]);
+        setTodos([r, ...todos]);
     };
 
+    /**
+     * 
+     * param {  }
+     * return {  }
+     */
     function __processData(data) {
         const {todo} = data;
         const [td, priority, dateTime] = todo.trim().split('::')
@@ -92,10 +102,9 @@ function ToDoModel() {
         for(let i = 0; i < temp.length; ++i) {
             if(temp[i].id === id) {
                 temp[i].status = temp[i].status === 1 ? 0 : 1;
-                break;
+                return setTodos(temp);
             }
-        }
-        setTodos(temp);
+        } 
     };
 
     /**
@@ -154,8 +163,20 @@ function ToDoModel() {
 
     // api
     return {
+<<<<<<< HEAD
         todos, active, completed, pending, modal, validateTodo,
         add, remove, clear, toggleItemCompleted, showAll, showCompleted, showPending, showModal, hideModal
+=======
+        todos, active, completed, pending, 
+        validateTodo,
+        add, 
+        remove, 
+        clear, 
+        toggleItemCompleted, 
+        showAll, 
+        showCompleted, 
+        showPending,
+>>>>>>> b04b8d3d966940ee6cc7bf10a65db1424fbf6e45
     }
 }
 

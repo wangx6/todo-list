@@ -1,9 +1,13 @@
 import React from 'react'
 
-export default function VhiButton({ text }) {
+export default function VhiButton({ text, handleClick, clsName }) {
+
+    const onClickBtn = () => {
+        if(handleClick) handleClick();
+    };
     return (
         <div>
-            <button>{text}</button>
+            <button className={`td-btn ${clsName}`} onClick={onClickBtn}>{text}</button>
         </div>
     )
 }

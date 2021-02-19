@@ -1,10 +1,12 @@
 import './App.css';
 
+import {useState} from 'react';
+
 // Component section
 import ToDoForm from './components/ToDoForm/ToDoForm';
 import ToDoList from './components/ToDoList/ToDoList';
 import ToDoControl from './components/ToDoControl/ToDoControl';
-import ToDoModal from './components/ToDoModal/ToDoModal';
+import SideMenu from './components/SideMenu/SideMenu';
 
 // Context section
 import {ToDoContext} from './ContextApi';
@@ -12,20 +14,26 @@ import {ToDoContext} from './ContextApi';
 // model section
 import ToDoModel from './models/ToDoModel';
 
-// Test commit
-
 function App() {
-  const { active, todos, completed, pending, modal, ...toDoService } = ToDoModel();
+  const { active, todos, completed, pending, ...toDoService } = ToDoModel();
+  const [showSideMenu, setShowSideMenu] = useState({value: false});
+
+  const onClickShowMenu = () => {
+    setShowSideMenu({value: true});
+  }
 
   return (
-    <div className="App">
-      <ToDoContext.Provider value={{active, todos, completed, pending, modal, toDoService}}>
-        <div className="td-gap-b-20">
+    <div className="App td-app" data-testid="to-do-app">
+      <button className="td-btn" onClick={onClickShowMenu}>show side</button>
+      <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
+        <div className="td-gap-b-30">
           <ToDoControl></ToDoControl>
         </div>
-        <ToDoForm></ToDoForm>
+        <div className="td-gap-b-20">
+          <ToDoForm></ToDoForm>
+        </div>
         <ToDoList></ToDoList>
-        <ToDoModal></ToDoModal>
+        <SideMenu vvisible={showSideMenu}></SideMenu>
       </ToDoContext.Provider>
     </div>
   );
