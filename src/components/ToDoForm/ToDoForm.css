@@ -1,16 +1,23 @@
 .td-todo-form{
+    position: relative;
     width :100%;
     display: flex;
 }
 .td-todo-form__text-input{
     flex-grow: 1;
-    margin-right: 20px;
+    border:0;
+    padding: 20px;
+    padding-right: 60px;
 }
 .td-todo-form-add{
+    position: absolute;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 0;
     background-color:var(--main-color);
     color: #fff;
+    right: 10px;
+    top: 50%;
+    margin-top: -20px;
 }

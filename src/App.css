@@ -5,6 +5,10 @@
 
 @import url(//fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@300;800&display=swap);
 
+body{
+  background-color: #f1f1f1;
+}
+
 *{
   font-family: Montserrat;
   font-weight: 400;
@@ -12,7 +16,7 @@
 
 .td-app{
   box-sizing: border-box;
-  padding: 40px;
+  padding: 30px;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -45,6 +49,21 @@
   height: 100%;
   background-color: rgba(0,0,0, .7);
   z-index: 1000;
+}
+
+.td-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.td-header__menu-icon{
+  font-size: 1.4rem;
+  color: #777;
+}
+.td-header__menu-bell{
+  font-size: 1.4rem;
+  color: #777;
 }
 
 

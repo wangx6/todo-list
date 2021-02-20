@@ -7,6 +7,7 @@ import ToDoForm from './components/ToDoForm/ToDoForm';
 import ToDoList from './components/ToDoList/ToDoList';
 import ToDoControl from './components/ToDoControl/ToDoControl';
 import SideMenu from './components/SideMenu/SideMenu';
+import {FaBars, FaBell} from 'react-icons/fa';
 
 // Context section
 import {ToDoContext} from './ContextApi';
@@ -24,11 +25,15 @@ function App() {
 
   return (
     <div className="App td-app" data-testid="to-do-app">
-      <button className="td-btn" onClick={onClickShowMenu}>show side</button>
+      <div class="td-header">
+        <FaBell className="td-header__menu-bell"></FaBell>
+        <h1>To do</h1>
+        <FaBars className="td-header__menu-icon" onClick={onClickShowMenu}></FaBars>
+      </div>
       <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
-        <div className="td-gap-b-30">
+        {/* <div className="td-gap-b-30">
           <ToDoControl></ToDoControl>
-        </div>
+        </div> */}
         <div className="td-gap-b-20">
           <ToDoForm></ToDoForm>
         </div>

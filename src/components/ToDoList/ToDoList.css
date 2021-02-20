@@ -2,8 +2,8 @@
 
 }
 .td-form-list__item__description.done{
-    color: #ddd;
-    text-decoration: line-through;
+    /* color: #ddd; */
+    /* text-decoration: line-through; */
 }
 .td-form-list-s{
     margin-bottom: 10px;
@@ -12,9 +12,15 @@
     display: flex;
     align-items:center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 6px;
     margin-bottom: 10px;
+    background-color: #fff;
 }
+.td-form-list__item.done{
+    background: #dff5c7;
+}
+
 .td-form-list__item__p.high{
     color: red;
 }
@@ -25,16 +31,19 @@
     color: green;
 }
 .td-form-list__item__complete-btn{
-    background-color:var(--main-color);
+    color: #ccc;
     border: 0;
     width: 20px;
     height: 20px;
     border-radius: 50%;
 }
+.td-form-list__item__complete-btn.done{
+    color: var(--main-color);
+}
 .to-form-list__item__del-btn{
-    background-color: red;
-    border: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    color: red;
+    font-size: 1.2rem;
+}
+.td-form-list__item__description {
+    width: 70%;
 }
