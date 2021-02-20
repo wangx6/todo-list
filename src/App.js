@@ -31,9 +31,9 @@ function App() {
         <FaBars className="td-header__menu-icon" onClick={onClickShowMenu}></FaBars>
       </div>
       <ToDoContext.Provider value={{active, todos, completed, pending, toDoService}}>
-        {/* <div className="td-gap-b-30">
+        <div className="td-gap-b-30">
           <ToDoControl></ToDoControl>
-        </div> */}
+        </div>
         <div className="td-gap-b-20">
           <ToDoForm></ToDoForm>
         </div>
