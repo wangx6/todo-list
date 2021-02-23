@@ -10,18 +10,15 @@ function setToLS(data){
     window.localStorage.setItem(LS_KEY, JSON.stringify(data));
 }
 
-export const fetchTodosFromApi = async () => {
-    let data
-    try{
-        const res = await axios.get('http://localhost:8080/todo');
-        data = res.data;
-        console.log(data);
-        
-        if(data.ok) return data;
-        else throw new Error(data);
-    } catch (err) {
-        throw new Error(data);
-    }
+export const fetchTodosFromApi =  () => {
+    return new Promise((resolve, reject) => {
+        axios.get('http://localhost:8080/todo')
+            .then((res) => {
+                const { data } = res.data;
+                if(data.ok) resolve(data);
+                else reject(data);
+            }).catch(err => reject(err));
+    });
 }
 
 /**
@@ -39,16 +36,9 @@ function ToDoModel() {
         // setTodos(getFromLS() || []);
         fetchTodosFromApi()
             .then((res) => {
-                console.log(res);
-                const { data } = res;
-                if(data.ok) {
-                    setTodos(data.data);
-                } else {
-
-                }
+                setTodos(res.data);
             })
             .catch((err) => {
-                console.log('asdfasdfasfas');
                 console.log(err);
             });
     }, []);
