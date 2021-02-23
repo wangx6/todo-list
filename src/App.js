@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App td-app" data-testid="to-do-app">
-      <div class="td-header">
+      <div className="td-header">
         <FaBell className="td-header__menu-bell"></FaBell>
         <h1>To do</h1>
         <FaBars className="td-header__menu-icon" onClick={onClickShowMenu}></FaBars>

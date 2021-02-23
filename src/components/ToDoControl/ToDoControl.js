@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { ToDoContext } from '../../ContextApi';
-import './ToDoControl.css';
+import   ToDoControlStyle from './ToDoControl.module.css';
 
 import VhiButton from '../VhiButton/VhiButton';
 
@@ -23,9 +23,9 @@ export default function ToDoControl() {
 
     // view space
     return (
-        <div className="td-todo-control" data-testid="td-todo-control">
+        <div className={ ToDoControlStyle.todoControl } data-testid="td-todo-control">
             <VhiButton 
-                clsName="td-todo-tid-all" 
+                clsName={ `td-todo-tid-all ${ToDoControlStyle.todoTidAll}` } 
                 handleClick={onClickAll} 
                 text={`${todos.length}`}>
             </VhiButton>

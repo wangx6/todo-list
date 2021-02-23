@@ -2,6 +2,11 @@ import ToDoModel from './ToDoModel';
 import Enzyme, { mount } from 'Enzyme';
 import Adapter17 from '@wojtekmaj/enzyme-adapter-react-17';
 import { act } from 'react-dom/test-utils';
+import axios from 'axios';
+
+import { fetchTodosFromApi } from './ToDoModel';
+
+jest.mock('axios');
 
 Enzyme.configure({adapter: new Adapter17()});
 
@@ -23,6 +28,30 @@ describe('unit test for todo model', () => {
         expect(tdm.completed).toEqual([]);
         expect(tdm.pending).toEqual([]);
     });
+
+    it('fetchTodosFromApi', (done) => {
+        expect.assertions(1);
+        const resp = {
+            ok: true, data: [{id: 'asdfa', todo: 'test todo', status: 1}]
+        };
+        axios.get.mockResolvedValue(resp);
+        fetchTodosFromApi().then((response) => {
+            expect(response).toEqual(resp);
+            done();
+        });
+    })
+    
+    it('fetchTodosFromApi - catch', (done) => {
+        expect.assertions(1);
+        const resp = {
+            ok: false, errors: ['test error']
+        };
+        axios.get.mockRejectedValue(resp);
+        fetchTodosFromApi().catch((response) => {
+            expect(response).toEqual(resp);
+            done();
+        });
+    })
 
     it('add', () => {
         wrapper(ToDoModel);

@@ -1,13 +1,27 @@
 import {useState, useEffect} from 'react';
-
+import axios from 'axios';
 const LS_KEY = 'vhi-todo';
 
-function getFromLS() {
-    return JSON.parse(window.localStorage.getItem(LS_KEY));
-}
+// function getFromLS() {
+//     return JSON.parse(window.localStorage.getItem(LS_KEY));
+// }
 
 function setToLS(data){
     window.localStorage.setItem(LS_KEY, JSON.stringify(data));
+}
+
+export const fetchTodosFromApi = async () => {
+    let data
+    try{
+        const res = await axios.get('http://localhost:8080/todo');
+        data = res.data;
+        console.log(data);
+        
+        if(data.ok) return data;
+        else throw new Error(data);
+    } catch (err) {
+        throw new Error(data);
+    }
 }
 
 /**
@@ -22,7 +36,21 @@ function ToDoModel() {
     const [pending, setPending] = useState([]);
 
     useEffect(() => {
-        setTodos(getFromLS() || []);
+        // setTodos(getFromLS() || []);
+        fetchTodosFromApi()
+            .then((res) => {
+                console.log(res);
+                const { data } = res;
+                if(data.ok) {
+                    setTodos(data.data);
+                } else {
+
+                }
+            })
+            .catch((err) => {
+                console.log('asdfasdfasfas');
+                console.log(err);
+            });
     }, []);
 
     useEffect(() => {

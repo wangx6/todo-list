@@ -1,0 +1,12 @@
+.todoControl{
+    display: flex;
+    justify-content: space-between;
+}
+
+.redColor{
+    color: red;
+}
+
+.todoTidAll {
+    composes: redColor;
+}
