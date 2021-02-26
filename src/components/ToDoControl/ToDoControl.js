@@ -5,6 +5,7 @@ import   ToDoControlStyle from './ToDoControl.module.css';
 import VhiButton from '../VhiButton/VhiButton';
 
 export default function ToDoControl() {
+    // States space
     const {todos, completed, pending, toDoService} = useContext(ToDoContext);
 
     // controller space

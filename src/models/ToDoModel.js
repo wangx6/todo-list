@@ -2,23 +2,26 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 const LS_KEY = 'vhi-todo';
 
-// function getFromLS() {
-//     return JSON.parse(window.localStorage.getItem(LS_KEY));
-// }
+function getFromLS() {
+    return JSON.parse(window.localStorage.getItem(LS_KEY));
+}
 
 function setToLS(data){
     window.localStorage.setItem(LS_KEY, JSON.stringify(data));
 }
 
-export const fetchTodosFromApi =  () => {
-    return new Promise((resolve, reject) => {
-        axios.get('http://localhost:8080/todo')
-            .then((res) => {
-                const { data } = res.data;
-                if(data.ok) resolve(data);
-                else reject(data);
-            }).catch(err => reject(err));
-    });
+export const fetchTodosFromApi = async () => {
+    try{
+        const res = await axios.get('http://localhost:8080/todo');
+        console.log(res);
+        const { data } = res;
+        console.log(data);
+        
+        if(data.ok) return data;
+        else throw new Error(data);
+    } catch (err) {
+        throw new Error(err);
+    }
 }
 
 /**
@@ -27,20 +30,28 @@ export const fetchTodosFromApi =  () => {
  * return {Object} api
  */
 function ToDoModel() {
+    /***********************************/
+    // STATE SPACE
     const [todos, setTodos] = useState([]);
     const [active, setActive] = useState(todos);
     const [completed, setCompleted] = useState([]);
     const [pending, setPending] = useState([]);
 
+    /***********************************/
+    // POWER SPACE
     useEffect(() => {
-        // setTodos(getFromLS() || []);
         fetchTodosFromApi()
-            .then((res) => {
+        .then((res) => {
+            if(res.ok) {
                 setTodos(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            } else {
+                console.log('Carry on with offline operation');
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            setTodos(getFromLS() || []);
+        });
     }, []);
 
     useEffect(() => {
@@ -50,11 +61,6 @@ function ToDoModel() {
         setToLS(todos);
     }, [todos]);
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
     function __createRecord(data) {
         return {
             id: Math.random().toString(32),
@@ -63,20 +69,6 @@ function ToDoModel() {
         }
     }
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function validateTodo(data) {
-        return !!data.todo.trim();
-    }
-
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
     function add(data) {
         if(!validateTodo(data)) return;
         const pdata = __processData(data);
@@ -84,11 +76,6 @@ function ToDoModel() {
         setTodos([r, ...todos]);
     };
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
     function __processData(data) {
         const {todo} = data;
         const [td, priority, dateTime] = todo.trim().split('::')
@@ -97,22 +84,6 @@ function ToDoModel() {
         };
     }
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function remove(id) {
-        const tmp = [...todos];
-        setTodos(tmp.filter(t => t.id !== id));
-    };
-
-    /**
-     * 0 - pending tasks
-     * 1 - completed
-     * param {  }
-     * return {  }
-     */
     function toggleItemCompleted(id) {
         const temp = [...todos];
         for(let i = 0; i < temp.length; ++i) {
@@ -123,43 +94,20 @@ function ToDoModel() {
         } 
     };
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function clear() {
-        setTodos([]);
-    }
+    function validateTodo(data) { return !!data.todo.trim() }
+    
+    function remove(id) { setTodos([...todos].filter(t => t.id !== id)) };
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function showAll() {
-        setActive(todos);
-    }
+    function clear() { setTodos([]) }
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function showCompleted() {
-        setActive(completed);
-    }
+    function showAll() { setActive(todos) }
 
-    /**
-     * 
-     * param {  }
-     * return {  }
-     */
-    function showPending() {
-        setActive(pending);
-    }
+    function showCompleted() { setActive(completed) }
 
-    // api
+    function showPending() { setActive(pending) }
+
+    /***********************************/
+    // Api space
     return {
         todos, active, completed, pending, 
         validateTodo,
