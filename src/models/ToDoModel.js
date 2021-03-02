@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+
 const LS_KEY = 'vhi-todo';
 
 function getFromLS() {
@@ -8,20 +9,6 @@ function getFromLS() {
 
 function setToLS(data){
     window.localStorage.setItem(LS_KEY, JSON.stringify(data));
-}
-
-export const fetchTodosFromApi = async () => {
-    try{
-        const res = await axios.get('http://localhost:8080/todo');
-        console.log(res);
-        const { data } = res;
-        console.log(data);
-        
-        if(data.ok) return data;
-        else throw new Error(data);
-    } catch (err) {
-        throw new Error(err);
-    }
 }
 
 /**
@@ -36,23 +23,6 @@ function ToDoModel() {
     const [active, setActive] = useState(todos);
     const [completed, setCompleted] = useState([]);
     const [pending, setPending] = useState([]);
-
-    /***********************************/
-    // POWER SPACE
-    useEffect(() => {
-        fetchTodosFromApi()
-        .then((res) => {
-            if(res.ok) {
-                setTodos(res.data);
-            } else {
-                console.log('Carry on with offline operation');
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-            setTodos(getFromLS() || []);
-        });
-    }, []);
 
     useEffect(() => {
         setActive(todos);
@@ -106,6 +76,11 @@ function ToDoModel() {
 
     function showPending() { setActive(pending) }
 
+    async function fetchTodosFromApi (doSetData) {
+        const response = await axios.get('http://localhost:8080/todo');
+        setTodos(response.data.data);
+    }
+
     /***********************************/
     // Api space
     return {
@@ -118,6 +93,7 @@ function ToDoModel() {
         showAll, 
         showCompleted, 
         showPending,
+        fetchTodosFromApi,
     }
 }
 

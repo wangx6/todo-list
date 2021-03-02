@@ -1,10 +1,25 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import { ToDoContext } from '../../ContextApi';
 import { FaTrashAlt, FaCheckCircle } from 'react-icons/fa';
 import './ToDoList.css'
 
+/**
+ * ToDoList component
+ */
 export default function ToDoList() {
     const {active, toDoService} = useContext(ToDoContext);
+
+    const fetch = useRef(toDoService.fetchTodosFromApi);
+
+    useEffect(onRender, []);
+
+    function onRender() {
+        fetch.current(true)
+        .catch(err => {
+            // deal with error
+            console.error(err.response);
+        });
+    }
 
     // controller space
     function onClickItemComplete(id) {
@@ -31,8 +46,6 @@ export default function ToDoList() {
                             <div>{l.dateTime}</div>
                             
                             <div>
-                                
-                                
                                 <FaTrashAlt
                                     onClick={() => {onClickItemDel(l.id)}} 
                                     className="td-btn to-form-list__item__del-btn"
