@@ -3,10 +3,6 @@ import axios from 'axios';
 
 const LS_KEY = 'vhi-todo';
 
-function getFromLS() {
-    return JSON.parse(window.localStorage.getItem(LS_KEY));
-}
-
 function setToLS(data){
     window.localStorage.setItem(LS_KEY, JSON.stringify(data));
 }
@@ -78,7 +74,8 @@ function ToDoModel() {
 
     async function fetchTodosFromApi (doSetData) {
         const response = await axios.get('http://localhost:8080/todo');
-        setTodos(response.data.data);
+        doSetData && setTodos(response.data.data);
+        return response;
     }
 
     /***********************************/

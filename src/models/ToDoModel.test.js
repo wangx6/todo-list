@@ -4,19 +4,17 @@ import Adapter17 from '@wojtekmaj/enzyme-adapter-react-17';
 import { act } from 'react-dom/test-utils';
 import axios from 'axios';
 
-import { fetchTodosFromApi } from './ToDoModel';
-
 jest.mock('axios');
 
 Enzyme.configure({adapter: new Adapter17()});
 
 let tdm;
 function wrapper(hook) {
-    const HookWrapper = () => {
+    const FakeComponent = () => {
         tdm = hook();
-        return null;
+        return <div>fake element</div>;
     }
-    mount(<HookWrapper />);
+    mount(<FakeComponent />);
     return tdm ;
 }
 
@@ -38,7 +36,7 @@ describe('unit test for todo model', () => {
         };
         axios.get.mockResolvedValue(resp);
         console.log(resp);
-        fetchTodosFromApi().then((response) => {
+        tdm.fetchTodosFromApi(true).then((response) => {
             console.log(response);
             expect(response).toEqual(resp.data);
             done();
@@ -47,21 +45,9 @@ describe('unit test for todo model', () => {
             done();
         });
     })
-    
-    // it('fetchTodosFromApi - catch', (done) => {
-    //     expect.assertions(1);
-    //     const resp = {
-    //         ok: false, errors: ['test error']
-    //     };
-    //     axios.get.mockRejectedValue(resp);
-    //     fetchTodosFromApi().catch((response) => {
-    //         expect(response).toEqual(resp);
-    //         done();
-    //     });
-    // })
 
     it('add', () => {
-        wrapper(ToDoModel);
+        act(() => {tdm.clear()});
         act(() => { tdm.add({ todo: 'test-to-do-0' }); });
         act(() => { tdm.add({ todo: 'test-to-do-1' }); });
         expect(tdm.todos.length).toEqual(2);
