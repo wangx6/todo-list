@@ -3,9 +3,9 @@ import { useState } from 'react'
 function FullFormRecord() {
     const id = Math.random().toString(32);
     const inputs = {
-        firstName: '', 
-        lastName: '',
-        dob: '',
+        firstName: 'Eamonn', 
+        lastName: 'Walsh',
+        dob: '1234',
     }
     
     const validate = () => {
@@ -21,8 +21,8 @@ function FullFormRecord() {
 function QuickFormRecord() {
     const id = Math.random().toString(32);
     const inputs  = {
-        firstName: '', 
-        lastName: '',
+        firstName: 'Yinghan', 
+        lastName: 'Wang',
     };
 
     const validate = () => {
