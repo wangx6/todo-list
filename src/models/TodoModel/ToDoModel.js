@@ -74,7 +74,7 @@ function ToDoModel() {
 
     async function fetchTodosFromApi (doSetData) {
         const response = await axios.get('http://localhost:8080/todo');
-        doSetData && setTodos(response.data.data);
+        setTodos(response.data.data);
         return response;
     }
 

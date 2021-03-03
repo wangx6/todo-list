@@ -18,9 +18,12 @@ function wrapper(hook) {
     return tdm ;
 }
 
+beforeAll(() => {
+    wrapper(ToDoModel)
+})
+
 describe('unit test for todo model', () => {
     it('should initalize', () => {
-        let tdm = wrapper(ToDoModel);
         expect(tdm.todos).toEqual([]);
         expect(tdm.active).toEqual([]);
         expect(tdm.completed).toEqual([]);
@@ -35,13 +38,11 @@ describe('unit test for todo model', () => {
             }
         };
         axios.get.mockResolvedValue(resp);
-        console.log(resp);
         tdm.fetchTodosFromApi(true).then((response) => {
             console.log(response);
             expect(response).toEqual(resp.data);
             done();
         }).catch((err) => {
-            console.log(err);
             done();
         });
     })

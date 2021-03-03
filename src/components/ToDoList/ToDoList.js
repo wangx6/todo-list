@@ -9,12 +9,12 @@ import './ToDoList.css'
 export default function ToDoList() {
     const {active, toDoService} = useContext(ToDoContext);
 
-    const fetch = useRef(toDoService.fetchTodosFromApi);
+    const refFetchTodosFromApi = useRef(toDoService.fetchTodosFromApi);
 
     useEffect(onRender, []);
 
     function onRender() {
-        fetch.current(true)
+        refFetchTodosFromApi.current(true)
         .catch(err => {
             // deal with error
             console.error(err.response);

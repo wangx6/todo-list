@@ -9,6 +9,12 @@ body{
   background-color: #f1f1f1;
 }
 
+
+.td-input {
+    padding :5px;
+    border-bottom: 1px solid #ccc;
+}
+
 *{
   font-family: Montserrat;
   font-weight: 400;
